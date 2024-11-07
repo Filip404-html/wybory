@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wybory USA 2024</title>
+  <title>Strona Głosowania</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <h1>Wybory USA 2024</h1>
-      <p>Wybierz swojego kandydata i oddaj głos!</p>
-    </header>
+  <header>
+    <h1>Wybory Prezydenckie USA</h1>
+  </header>
 
-    <main>
-      <!-- Nowoczesne przyciski jako linki -->
-      <a href="login.html" class="button" id="vote-btn">Głosuj</a>
-      <a href="results.html" class="button" id="results-btn">Pokaż Wyniki</a>
-      <a href="admin-login.html" class="button hidden" id="admin-login-btn">Zaloguj się jako Admin</a>
-    </main>
+  <!-- Przyciski do głosowania i wyników -->
+  <main>
+    <button id="vote-btn" onclick="window.location.href = 'login.html'">Głosuj</button>
+    <button id="results-btn" onclick="window.location.href = 'results.html'">Zobacz Wyniki</button>
+  </main>
 
-    <footer>
-      <p>&copy; 2024 Wybory USA | <a href="#">Regulamin</a></p>
-    </footer>
+  <!-- Formularz logowania jako admin (początkowo ukryty) -->
+  <div id="admin-login-form" style="display: none;">
+    <h2>Logowanie jako Administrator</h2>
+    <form onsubmit="validateAdminLogin(event)">
+      <input type="password" id="admin-password" placeholder="Hasło" required>
+      <button type="submit">Zaloguj</button>
+    </form>
+    <button onclick="toggleAdminLogin()">Zamknij</button>
   </div>
 
   <script src="scripts.js"></script>
