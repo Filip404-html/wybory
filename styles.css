@@ -1,239 +1,246 @@
-/* Ogólne style dla całej strony */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ecf0f1;
+/* Resetowanie marginesów i paddingu dla wszystkich elementów */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #34495e;
 }
 
-h1, h2, h3 {
-  text-align: center;
-  color: #2c3e50;
+/* Ustawienie podstawowych fontów i stylów dla całej strony */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
 }
 
-h1 {
-  font-size: 36px;
-  margin-top: 50px;
-}
-
-h2 {
-  font-size: 24px;
-  color: #34495e;
-}
-
-/* Styl nagłówka */
+/* Tło nagłówka z delikatnym gradientem w kolorach USA */
 header {
-  background-color: #2980b9;
+  background: linear-gradient(135deg, #3c3b6e 0%, #bd3d44 100%);
   color: white;
-  padding: 20px 0;
   text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-  margin: 0;
-  font-size: 2.5em;
+  font-size: 3rem;
+  letter-spacing: 2px;
 }
 
-/* Przycisk logowania admina (dyskretne) */
-#admin-login-btn {
-  background-color: #f39c12;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  padding: 12px 24px;
-  font-size: 18px;
-  border-radius: 50px;
+/* Stylizacja dla przycisków */
+button {
+  background-color: #007BFF; /* Niebieski - głosowanie */
+  color: white;
   border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
   cursor: pointer;
-  opacity: 0.8;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#admin-login-btn:hover {
-  background-color: #e67e22;
-  opacity: 1;
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-/* Formatyka formularza logowania admina */
+button:active {
+  transform: translateY(1px);
+}
+
+/* Stylizacja dla formularza logowania */
 #admin-login-form {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
+  background: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: none;
+  border-radius: 8px;
   width: 300px;
-  z-index: 1001;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
 }
 
-#admin-login-form input {
-  padding: 12px;
-  margin-bottom: 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+input[type="text"], input[type="password"] {
   width: 100%;
-}
-
-#admin-login-form button {
-  background-color: #27ae60;
   padding: 10px;
-  color: white;
-  font-size: 16px;
-  border: none;
+  margin: 10px 0;
   border-radius: 5px;
-  width: 100%;
-  cursor: pointer;
+  border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
-#admin-login-form button:hover {
-  background-color: #2ecc71;
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+  border-color: #007BFF;
 }
 
-/* Styl przycisków na stronie głównej */
-button#vote-btn, button#results-btn {
-  background-color: #e74c3c;
-  color: white;
-  padding: 12px 20px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 30px;
-  width: 100%;
+/* Stylizacja strony głosowania */
+.vote-section {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 0;
 }
 
-button#vote-btn:hover, button#results-btn:hover {
-  background-color: #c0392b;
+.candidate {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
 }
 
-/* Styl tabeli wyników */
-.results-table {
+.candidate img {
+  max-width: 100%;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.candidate h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.candidate p {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.candidate button {
+  background-color: #d9534f; /* Czerwony dla Trumpa */
+}
+
+.candidate button.kamala {
+  background-color: #007BFF; /* Niebieski dla Kamali */
+}
+
+.candidate button:hover {
+  background-color: #f39c12;
+}
+
+/* Stylizacja dla wyników głosowania */
+.results-section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
   width: 80%;
-  margin: 40px auto;
-  border-collapse: collapse;
+  margin: 50px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.results-table th, .results-table td {
-  padding: 12px;
+.results-section h2 {
   text-align: center;
-  font-size: 18px;
+  font-size: 2rem;
+  color: #333;
 }
 
-.results-table th {
-  background-color: #3498db;
-  color: white;
-}
-
-.results-table td {
-  background-color: #ecf0f1;
-}
-
-.results-table tr:nth-child(even) {
-  background-color: #f5f5f5;
-}
-
-/* Pasek głosowania przy kandydacie */
-.candidate-bar {
-  height: 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.candidate-bar .progress {
-  height: 100%;
-  border-radius: 5px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-}
-
-.candidate-bar .trump {
-  background-color: #e74c3c;
-}
-
-.candidate-bar .kamala {
-  background-color: #2980b9;
-}
-
-/* Styl obrazków i opisów kandydatów */
-.candidate-container {
+.vote-progress {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 20px;
+  margin-top: 30px;
 }
 
-.candidate-container img {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  object-fit: cover;
+.vote-bar {
+  width: 45%;
+  height: 30px;
+  border-radius: 15px;
+  position: relative;
 }
 
-.candidate-info {
-  flex: 1;
-  margin-left: 20px;
+.vote-bar .progress {
+  height: 100%;
+  border-radius: 15px;
 }
 
-.candidate-info h3 {
-  margin-bottom: 10px;
-}
-
-.candidate-info p {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.candidate-info button {
-  background-color: #3498db;
+.vote-bar .progress span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#trump-bar .progress {
+  background-color: #d9534f; /* Czerwony dla Trumpa */
+}
+
+#kamala-bar .progress {
+  background-color: #007BFF; /* Niebieski dla Kamali */
+}
+
+/* Stylizacja dla tokenów */
+.token-form {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.token-form input {
   padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.candidate-info button:hover {
-  background-color: #2980b9;
-}
-
-/* Styl dla formularza głosowania */
-.vote-form {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.vote-form input {
-  padding: 10px;
-  font-size: 16px;
-  margin-top: 20px;
-  width: 300px;
-  border-radius: 5px;
+  font-size: 1rem;
   border: 1px solid #ccc;
-  text-align: center;
+  border-radius: 5px;
+  width: 200px;
+  margin-right: 10px;
 }
 
-.vote-form button {
-  background-color: #e74c3c;
+.token-form button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #28a745;
   color: white;
-  padding: 12px 20px;
-  font-size: 18px;
   border: none;
   border-radius: 5px;
-  margin-top: 20px;
   cursor: pointer;
 }
 
-.vote-form button:hover {
-  background-color: #c0392b;
+.token-form button:hover {
+  background-color: #218838;
+}
+
+/* Stylizacja dla ukrytych formularzy i wyników */
+#admin-login-form {
+  display: none;
+}
+
+/* Stylizacja dla tła całej strony */
+body {
+  background: linear-gradient(135deg, #3c3b6e, #bd3d44);
+  background-size: 100% 100%;
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+footer {
+  background-color: #3c3b6e;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 50px;
+}
+
+footer p {
+  font-size: 1rem;
 }
