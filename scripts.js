@@ -1,63 +1,52 @@
-// Funkcja logowania
+// Funkcja logowania za pomocą tokenu
 function login() {
     const token = document.getElementById("token").value;
-    
-    if (token === "SECRET_TOKEN") { // Prosty token dla demonstracji
-        localStorage.setItem("isLoggedIn", "true");
-        alert("Zalogowano pomyślnie!");
+    if (token === "12345") { // Przykładowy token
         window.location.href = "vote.html";
     } else {
-        alert("Nieprawidłowy token!");
+        alert("Błędny token!");
     }
 }
 
-// Funkcja głosowania
+// Funkcja oddania głosu
 function castVote(candidate) {
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-        alert("Musisz się zalogować, aby zagłosować.");
-        return;
+    let votes = JSON.parse(localStorage.getItem("votes")) || { Trump: 0, Kamala: 0 };
+
+    if (candidate === 'Trump') {
+        votes.Trump += 1;
+    } else if (candidate === 'Kamala') {
+        votes.Kamala += 1;
     }
 
-    let trumpVotes = parseInt(localStorage.getItem("trumpVotes")) || 0;
-    let kamalaVotes = parseInt(localStorage.getItem("kamalaVotes")) || 0;
+    localStorage.setItem("votes", JSON.stringify(votes));
 
-    if (candidate === "Trump") {
-        trumpVotes++;
-        localStorage.setItem("trumpVotes", trumpVotes);
-    } else if (candidate === "Kamala") {
-        kamalaVotes++;
-        localStorage.setItem("kamalaVotes", kamalaVotes);
-    }
-
-    alert(`Dziękujemy za głos na ${candidate}!`);
-    localStorage.setItem("isLoggedIn", "false"); // Blokuje ponowne głosowanie po jednym głosie
+    // Przekierowanie na stronę wyników
     window.location.href = "results.html";
 }
 
-// Funkcja wyświetlania wyników z animacjami
+// Wyświetlanie wyników głosowania
 function displayResults() {
-    const trumpVotes = parseInt(localStorage.getItem("trumpVotes")) || 0;
-    const kamalaVotes = parseInt(localStorage.getItem("kamalaVotes")) || 0;
-    const totalVotes = trumpVotes + kamalaVotes;
-    
-    const trumpPercentage = totalVotes === 0 ? 0 : Math.round((trumpVotes / totalVotes) * 100);
-    const kamalaPercentage = totalVotes === 0 ? 0 : Math.round((kamalaVotes / totalVotes) * 100);
-    
-    // Ustawienie szerokości pasków
+    const votes = JSON.parse(localStorage.getItem("votes")) || { Trump: 0, Kamala: 0 };
+    const totalVotes = votes.Trump + votes.Kamala;
+
+    const trumpPercentage = (votes.Trump / totalVotes) * 100 || 0;
+    const kamalaPercentage = (votes.Kamala / totalVotes) * 100 || 0;
+
+    // Ustawienie szerokości paska
     const trumpBar = document.getElementById("trump-bar");
     const kamalaBar = document.getElementById("kamala-bar");
-    
+
     const trumpLabel = document.getElementById("trump-label");
     const kamalaLabel = document.getElementById("kamala-label");
-    
+
     trumpBar.style.width = `${trumpPercentage}%`;
     kamalaBar.style.width = `${kamalaPercentage}%`;
-    
-    trumpLabel.textContent = `Trump - ${trumpVotes} głosów`;
-    kamalaLabel.textContent = `Kamala - ${kamalaVotes} głosów`;
-    
-    document.getElementById("trump-percentage").textContent = `Trump: ${trumpPercentage}%`;
-    document.getElementById("kamala-percentage").textContent = `Kamala: ${kamalaPercentage}%`;
+
+    trumpLabel.textContent = `Trump - ${votes.Trump} głosów`;
+    kamalaLabel.textContent = `Kamala - ${votes.Kamala} głosów`;
+
+    document.getElementById("trump-percentage").textContent = `Trump: ${trumpPercentage.toFixed(2)}%`;
+    document.getElementById("kamala-percentage").textContent = `Kamala: ${kamalaPercentage.toFixed(2)}%`;
 }
 
 window.onload = displayResults;
