@@ -7,22 +7,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Wybierz swojego kandydata!</h1>
-    <div class="candidate-container">
-        <div class="candidate" onclick="castVote('Trump')">
-            <img src="trump.jpg" alt="Donald Trump">
-            <h2>Donald Trump</h2>
-            <p>Opis kandydata</p>
-            <button class="vote-button">ODDAJ GŁOS</button>
+    <header>
+        <h1>Wybory USA 2024</h1>
+        <p>Wprowadź token, aby zagłosować</p>
+    </header>
+
+    <div class="login-form">
+        <input type="text" id="tokenInput" placeholder="Wprowadź token">
+        <button onclick="verifyToken()">Zaloguj się</button>
+    </div>
+
+    <div id="voteSection" style="display: none;">
+        <h2>Wybierz swojego kandydata:</h2>
+        <div class="candidate" style="background-color: #0033cc;">
+            <h3>Donald Trump</h3>
+            <p>Opis: Czwarty prezydent USA, republikanin.</p>
+            <button onclick="vote('Trump')">Oddaj głos</button>
         </div>
-        <div class="candidate" onclick="castVote('Kamala')">
-            <img src="kamala.jpg" alt="Kamala Harris">
-            <h2>Kamala Harris</h2>
-            <p>Opis kandydata</p>
-            <button class="vote-button">ODDAJ GŁOS</button>
+        <div class="candidate" style="background-color: #d32f2f;">
+            <h3>Kamala Harris</h3>
+            <p>Opis: Wiceprezydent USA, demokratka.</p>
+            <button onclick="vote('Kamala')">Oddaj głos</button>
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script>
+        // Funkcja weryfikująca token
+        function verifyToken() {
+            var token = document.getElementById('tokenInput').value;
+            if (token === 'valid_token') {
+                document.getElementById('voteSection').style.display = 'block'; // Pokazuje sekcję do głosowania
+            } else {
+                alert('Błędny token. Spróbuj ponownie.');
+            }
+        }
+
+        // Funkcja do głosowania
+        function vote(candidate) {
+            alert('Oddano głos na: ' + candidate);
+            window.location.href = 'thankyou.html'; // Po głosowaniu przekierowanie na stronę "Dziękujemy"
+        }
+    </script>
 </body>
 </html>
