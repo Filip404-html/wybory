@@ -131,3 +131,32 @@ tokenForm.addEventListener('submit', function(event) {
   // Wyczyść pole tokenu po próbie
   tokenInput.value = '';
 });
+
+// Przykładowe dane głosów
+const results = {
+  trumpVotes: 1200,
+  kamalaVotes: 850
+};
+
+// Funkcja do aktualizacji wyników
+function updateResults() {
+  const trumpVotes = document.getElementById('trump-votes');
+  const kamalaVotes = document.getElementById('kamala-votes');
+  
+  const trumpBar = document.getElementById('trump-bar');
+  const kamalaBar = document.getElementById('kamala-bar');
+
+  // Ustawienie liczby głosów
+  trumpVotes.textContent = results.trumpVotes;
+  kamalaVotes.textContent = results.kamalaVotes;
+
+  // Obliczanie maksymalnej liczby głosów (aby skala była zawsze spójna)
+  const maxVotes = Math.max(results.trumpVotes, results.kamalaVotes);
+
+  // Ustawianie wysokości słupków na podstawie liczby głosów
+  trumpBar.style.height = `${(results.trumpVotes / maxVotes) * 300}px`; // Skala 300px
+  kamalaBar.style.height = `${(results.kamalaVotes / maxVotes) * 300}px`; // Skala 300px
+}
+
+// Wywołanie funkcji na załadowanie strony
+window.onload = updateResults;
