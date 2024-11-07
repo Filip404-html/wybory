@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Głosowania w Wyborach</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wybory USA 2024</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>System Głosowania w Wyborach 2024</h1>
-        </header>
-        <main>
-            <h2>Witamy w systemie głosowania!</h2>
-            <p>Kliknij poniżej, aby oddać głos lub zobaczyć aktualne wyniki wyborów.</p>
+  <header>
+    <h1>Wybory Prezydenckie USA 2024</h1>
+    <p>Głosuj na swojego kandydata</p>
+  </header>
 
-            <button onclick="location.href='vote.html'">Przejdź do głosowania</button>
-            <button onclick="location.href='results.html'">Zobacz wyniki</button>
-            <button onclick="window.location.href='admin-login.html'">Logowanie do panelu admina</button>
-        </main>
-    </div>
-    <script src="scripts.js"></script>
+  <div class="main-container">
+    <button id="vote-btn">Głosuj</button>
+    <button id="results-btn">Zobacz wyniki</button>
+  </div>
+
+  <!-- Przycisk do logowania do admina -->
+  <button id="admin-login-btn">Admin</button>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
