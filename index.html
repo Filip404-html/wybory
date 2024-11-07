@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <div class="container">
     <header>
       <h1>Wybory USA 2024</h1>
@@ -14,10 +15,15 @@
     </header>
 
     <main>
-      <button id="vote-btn" class="action-btn">Głosuj</button>
-      <button id="results-btn" class="action-btn">Pokaż Wyniki</button>
-      <button id="admin-login-btn" class="hidden">Zaloguj się jako Admin</button>
+      <!-- Nowoczesne przyciski jako linki -->
+      <a href="login.html" class="button" id="vote-btn">Głosuj</a>
+      <a href="results.html" class="button" id="results-btn">Pokaż Wyniki</a>
+      <a href="admin-login.html" class="button hidden" id="admin-login-btn">Zaloguj się jako Admin</a>
     </main>
+
+    <footer>
+      <p>&copy; 2024 Wybory USA | <a href="#">Regulamin</a></p>
+    </footer>
   </div>
 
   <script src="scripts.js"></script>
