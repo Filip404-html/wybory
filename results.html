@@ -1,24 +1,91 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wyniki Głosowania</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wyniki Głosowania</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.results-container {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 50px;
+}
+
+.results {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.candidate {
+  width: 40%;
+  text-align: center;
+}
+
+.candidate h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.bar {
+  width: 100%;
+  height: 300px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+}
+
+.vote-count {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+}
+
+#trump-bar {
+  background-color: #e74c3c; /* Czerwony dla Trumpa */
+}
+
+#kamala-bar {
+  background-color: #3498db; /* Niebieski dla Kamali */
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Wyniki głosowania</h1>
-        </header>
-        <main>
-            <div id="results">
-                <p id="trumpVotes">Trump: 0</p>
-                <p id="kamalaVotes">Kamala: 0</p>
-            </div>
-            <button onclick="location.href='index.html'">Przejdź do strony głównej</button>
-        </main>
+  <div class="results-container">
+    <h1>Wyniki Głosowania</h1>
+    <div class="results">
+      <div class="candidate" id="trump">
+        <h2>Donald Trump</h2>
+        <div class="bar" id="trump-bar">
+          <span class="vote-count" id="trump-votes">0</span>
+        </div>
+      </div>
+      <div class="candidate" id="kamala">
+        <h2>Kamala Harris</h2>
+        <div class="bar" id="kamala-bar">
+          <span class="vote-count" id="kamala-votes">0</span>
+        </div>
+      </div>
     </div>
-    <script src="scripts.js"></script>
+  </div>
 </body>
 </html>
