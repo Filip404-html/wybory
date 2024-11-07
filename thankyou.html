@@ -6,6 +6,94 @@
   <title>Dziękujemy za Twój Głos</title>
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
+  
+  <style>
+  /* Thank You Page Styles */
+.thank-you-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.thank-you-message {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.thank-you-message h1 {
+  font-size: 2.5em;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.thank-you-message p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.thank-you-animation {
+  margin-bottom: 30px;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #28a745;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  animation: checkmark-animation 1s ease-out;
+}
+
+.checkmark::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 15px;
+  height: 30px;
+  border: solid #28a745;
+  border-width: 0 6px 6px 0;
+  transform: rotate(45deg);
+}
+
+@keyframes checkmark-animation {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-home {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.2em;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-home:hover {
+  background-color: #0056b3;
+}
+</style>
 </head>
 <body>
   <div class="thank-you-container">
