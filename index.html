@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Wybory USA 2024</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
@@ -16,22 +16,18 @@
         <header>
             <h1>Wybory Prezydenckie 2024 - USA</h1>
             <p>Wybierz swojego kandydata!</p>
-            <button id="vote-btn">Oddaj Głos</button>
         </header>
 
-        <!-- Sekcja wyników głosowania -->
-        <section id="results-section">
-            <h2>Wyniki Głosowania</h2>
-            <div class="progress-container">
-                <div class="progress-bar" id="trump-progress" style="width: 0%;">0%</div>
-            </div>
-            <div class="progress-container">
-                <div class="progress-bar kamala" id="kamala-progress" style="width: 0%;">0%</div>
-            </div>
-        </section>
+        <!-- Przyciski -->
+        <div class="button-container">
+            <button id="vote-btn" onclick="window.location.href='vote.html'">Oddaj Głos</button>
+            <button id="results-btn" onclick="window.location.href='results.html'">Zobacz Wyniki</button>
+        </div>
 
-        <!-- Sekcja ukrytego przycisku logowania -->
-        <button id="login-btn">Zaloguj się do Panelu Admina</button>
+        <!-- Dyskretny przycisk logowania -->
+        <div id="login-wrapper">
+            <button id="login-btn" onclick="showLoginForm()">Zaloguj się do Panelu Admina</button>
+        </div>
 
         <!-- Podstrona logowania do panelu admina -->
         <div class="login-container" id="login-container">
@@ -43,29 +39,7 @@
     </div>
 
     <script>
-        // Zmienna przechowująca dane o głosach
-        let trumpVotes = 0;
-        let kamalaVotes = 0;
-
-        // Funkcja aktualizująca pasek postępu wyników
-        function updateResults() {
-            const totalVotes = trumpVotes + kamalaVotes;
-            const trumpPercentage = (trumpVotes / totalVotes) * 100;
-            const kamalaPercentage = (kamalaVotes / totalVotes) * 100;
-
-            // Ustawienie wartości paska postępu
-            document.getElementById('trump-progress').style.width = trumpPercentage + '%';
-            document.getElementById('trump-progress').innerText = Math.round(trumpPercentage) + '%';
-            document.getElementById('kamala-progress').style.width = kamalaPercentage + '%';
-            document.getElementById('kamala-progress').innerText = Math.round(kamalaPercentage) + '%';
-        }
-
-        // Przykładowe dane głosów
-        trumpVotes = 1200;
-        kamalaVotes = 900;
-        updateResults();
-
-        // Logowanie do panelu admina (bardzo proste logowanie)
+        // Logowanie do panelu admina
         document.getElementById('admin-login-btn').addEventListener('click', function () {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -77,10 +51,11 @@
             }
         });
 
-        // Ukrywanie / pokazywanie formularza logowania
-        document.getElementById('login-btn').addEventListener('click', function () {
-            document.getElementById('login-container').style.display = 'block';
-        });
+        // Pokazywanie formularza logowania po kliknięciu przycisku
+        function showLoginForm() {
+            const loginForm = document.getElementById('login-container');
+            loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </body>
 
