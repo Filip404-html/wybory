@@ -1,45 +1,41 @@
-let trumpVotes = 0;
-let kamalaVotes = 0;
-
-const tokens = [];
-const results = { Trump: 0, Kamala: 0 };
-
-function validateToken() {
-    const token = document.getElementById("token-input").value;
-    fetch('tokens.json')
-        .then(response => response.json())
-        .then(data => {
-            const validToken = data.find(t => t.token === token && !t.used);
-            if (validToken) {
-                validToken.used = true;
-                alert('Token zatwierdzony!');
-                localStorage.setItem('user-token', token);
-                window.location.href = "vote.html";
-            } else {
-                document.getElementById("error-message").classList.remove("hidden");
-            }
-        });
+// Funkcja do pobrania wyników głosowania z lokalnego storage
+function getVotes() {
+    const votes = JSON.parse(localStorage.getItem('votes')) || { "Trump": 0, "Kamala": 0 };
+    return votes;
 }
 
+// Funkcja do wyświetlenia wyników na stronie wyników
+function displayVotes() {
+    const votes = getVotes();
+    document.getElementById('trumpVotes').innerText = `Trump: ${votes.Trump}`;
+    document.getElementById('kamalaVotes').innerText = `Kamala: ${votes.Kamala}`;
+    // Dla panelu admina
+    document.getElementById('adminTrumpVotes').innerText = votes.Trump;
+    document.getElementById('adminKamalaVotes').innerText = votes.Kamala;
+}
+
+// Funkcja do głosowania
 function vote(candidate) {
-    if (candidate === 'Trump') {
-        trumpVotes++;
-        document.getElementById('trump-votes').innerText = trumpVotes;
-    } else if (candidate === 'Kamala') {
-        kamalaVotes++;
-        document.getElementById('kamala-votes').innerText = kamalaVotes;
-    }
-    alert('Dziękujemy za głos!');
+    const votes = getVotes();
+    votes[candidate]++;
+    localStorage.setItem('votes', JSON.stringify(votes));  // Zapis głosów do localStorage
+    displayVotes();  // Odświeżenie wyników
 }
 
-function loginAdmin() {
-    const password = document.getElementById('admin-password').value;
-    if (password === "admin123") {
-        window.location.href = "admin-panel.html";
+// Funkcja do logowania (dla admina)
+function login() {
+    const password = document.getElementById('password').value;
+    const correctPassword = "admin123";  // Hasło dla admina
+
+    if (password === correctPassword) {
+        alert("Zalogowano pomyślnie");
+        location.href = "admin-panel.html";
     } else {
-        document.getElementById("admin-error-message").classList.remove("hidden");
+        alert("Nieprawidłowe hasło.");
     }
 }
 
-function generateToken() {
-    const newToken = { token: Math.random().toString(36).substr(2, 
+// Inicjalizacja wyników przy załadowaniu strony
+window.onload = function() {
+    displayVotes();
+};
