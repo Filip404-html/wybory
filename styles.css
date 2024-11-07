@@ -1,4 +1,4 @@
-/* Globalne style */
+/* Resetowanie podstawowych elementów */
 * {
   margin: 0;
   padding: 0;
@@ -6,157 +6,113 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-}
-
-h1, h2, h3 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Nagłówek */
-header {
-  background: linear-gradient(135deg, #003366, #006699);
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 4px solid #006699;
-}
-
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-header p {
-  font-size: 1.2rem;
-}
-
-/* Przyciski */
-button {
-  background: #0044cc;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
-}
-
-button:hover {
-  background: #0055ff;
-  transform: scale(1.05);
-}
-
-button:active {
-  background: #003366;
-  transform: scale(1);
-}
-
-/* Sekcja głosowania */
-.vote-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px 20px;
-}
-
-.candidate-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 48%;
-  text-align: center;
-  transition: transform 0.3s;
-}
-
-.candidate-card:hover {
-  transform: scale(1.05);
-}
-
-.candidate-card img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-}
-
-.candidate-card h3 {
-  margin-top: 20px;
-  font-size: 1.8rem;
-  color: #003366;
-}
-
-.candidate-card button {
-  margin-top: 20px;
-  background: #ff5733; /* Trump red */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.candidate-card button:hover {
-  background: #ff7840;
-  transform: scale(1.05);
-}
-
-.candidate-card button:active {
-  background: #c74327;
-  transform: scale(1);
-}
-
-/* Sekcja logowania */
-.login-container {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #4f6d7a, #8c9d9f);
+  color: #fff;
+  overflow: hidden;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container {
+  text-align: center;
   padding: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.login-form {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
+header h1 {
+  font-size: 4rem;
+  color: #ff6f61;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.login-form input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
+header p {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
 }
 
-.login-form input:focus {
-  border-color: #0044cc;
-  outline: none;
-}
-
-.login-form button {
-  width: 100%;
-  padding: 12px;
-  background: #0044cc;
-  color: white;
-  border-radius: 5px;
+button {
+  padding: 15px 40px;
   font-size: 1.2rem;
+  background-color: #003366;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.login-form button:hover {
-  background: #0055ff;
+button:hover {
+  background-color: #ff6f61;
+  transform: translateY(-3px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#vote-btn {
+  background: #003366;
+}
+
+#results-btn {
+  background: #0066cc;
+}
+
+#admin-login-btn {
+  background: #0073e6;
+  opacity: 0;
+}
+
+#admin-login-btn:hover {
+  opacity: 1;
+  background-color: #004b99;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animacje dla przycisków */
+@keyframes button-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button {
+  animation: button-fade 0.5s ease-out;
+}
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+footer a {
+  color: #ff6f61;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
