@@ -1,7 +1,7 @@
 // Wstępna definicja tokenów (można przechowywać w pliku JSON, lokalnie w aplikacji)
 let tokens = [
-  { token: "abc123", used: false },
-  { token: "def456", used: false },
+  { token: "abc123", used: true },
+  { token: "def456", used: true },
   { token: "ghi789", used: false }
 ];
 
