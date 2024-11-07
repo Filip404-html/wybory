@@ -1,1 +1,29 @@
-
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyniki Głosowania</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <h2>Wyniki Głosowania</h2>
+    <div id="results">
+        <div class="result-bar-container">
+            <div id="trump-bar" class="result-bar" style="background-color: red;">
+                <span id="trump-label"></span>
+            </div>
+        </div>
+        <div class="result-bar-container">
+            <div id="kamala-bar" class="result-bar" style="background-color: blue;">
+                <span id="kamala-label"></span>
+            </div>
+        </div>
+        <div class="result-text">
+            <p class="result-percentage" id="trump-percentage"></p>
+            <p class="result-percentage" id="kamala-percentage"></p>
+        </div>
+    </div>
+</body>
+</html>
