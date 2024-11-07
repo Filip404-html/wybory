@@ -7,18 +7,18 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Wybory Prezydenckie USA 2024</h1>
-    <p>Głosuj na swojego kandydata</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Wybory USA 2024</h1>
+      <p>Wybierz swojego kandydata i oddaj głos!</p>
+    </header>
 
-  <div class="main-container">
-    <button id="vote-btn">Głosuj</button>
-    <button id="results-btn">Zobacz wyniki</button>
+    <main>
+      <button id="vote-btn" class="action-btn">Głosuj</button>
+      <button id="results-btn" class="action-btn">Pokaż Wyniki</button>
+      <button id="admin-login-btn" class="hidden">Zaloguj się jako Admin</button>
+    </main>
   </div>
-
-  <!-- Przycisk do logowania do admina -->
-  <button id="admin-login-btn">Admin</button>
 
   <script src="scripts.js"></script>
 </body>
