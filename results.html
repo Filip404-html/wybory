@@ -3,29 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wybory USA - Wyniki</title>
+    <title>Wyniki Głosowania</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Wyniki Głosowania</h1>
-    </header>
-
-    <section id="results-section">
-        <div id="results">
-            <div id="trump-results">
-                <span>Donald Trump: </span><span id="trump-votes">0</span> głosów
+    <div class="container">
+        <header>
+            <h1>Wyniki głosowania</h1>
+        </header>
+        <main>
+            <div id="results">
+                <p id="trumpVotes">Trump: 0</p>
+                <p id="kamalaVotes">Kamala: 0</p>
             </div>
-            <div id="kamala-results">
-                <span>Kamala Harris: </span><span id="kamala-votes">0</span> głosów
-            </div>
-            <div id="progress-bar">
-                <div id="progress-trump"></div>
-                <div id="progress-kamala"></div>
-            </div>
-        </div>
-    </section>
-
+            <button onclick="location.href='index.html'">Przejdź do strony głównej</button>
+        </main>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
