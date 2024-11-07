@@ -1,4 +1,4 @@
-/* Resetowanie podstawowych elementów */
+/* Resetowanie podstawowych stylów */
 * {
   margin: 0;
   padding: 0;
@@ -13,6 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
 .container {
@@ -178,4 +179,75 @@ input[type="text"], input[type="submit"] {
 input[type="text"]:focus, input[type="submit"]:hover {
   border-color: #3498db;
   background-color: #f0faff;
+}
+
+/* Sekcja z głosowaniem */
+.vote-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.vote-candidate {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.vote-candidate:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.vote-candidate img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.vote-candidate h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.vote-candidate p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.vote-candidate button {
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.vote-candidate button:hover {
+  background-color: #e03e2d;
+}
+
+/* Animacja dla karty kandydata */
+@keyframes candidate-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vote-candidate {
+  animation: candidate-fade-in 0.6s ease-out;
 }
