@@ -18,22 +18,23 @@
         <button id="resultsBtn">Zobacz wyniki</button>
     </div>
 
-    <!-- Modale: Logowanie admina -->
+    <!-- Panel do logowania admina (ukryty na początku) -->
     <div id="hidden-admin-login">
-        <button onclick="showLoginModal()">Admin</button>
+        <button onclick="showLoginModal()">Logowanie do panelu admina</button>
     </div>
 
+    <!-- Modal logowania admina -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2>Panel Logowania</h2>
             <input type="password" id="adminPassword" placeholder="Wprowadź hasło">
             <button onclick="login()">Zaloguj się</button>
-            <p id="error" style="display: none;">Błędne hasło</p>
+            <p id="error" style="display: none; color: red;">Błędne hasło</p>
         </div>
     </div>
 
     <script>
-        // Funkcja do pokazania logowania admina
+        // Funkcja do pokazania modala logowania admina
         function showLoginModal() {
             document.getElementById('loginModal').style.display = 'block';
         }
@@ -41,21 +42,30 @@
         // Funkcja logowania admina
         function login() {
             var password = document.getElementById('adminPassword').value;
+            // Sprawdzanie poprawności hasła
             if (password === 'admin123') {
-                window.location.href = 'admin.html'; // Przekierowanie do panelu admina
+                window.location.href = 'admin.html'; // Jeśli hasło jest poprawne, przekierowanie do panelu admina
             } else {
-                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').style.display = 'block'; // Jeśli hasło jest błędne, wyświetlenie komunikatu
             }
         }
 
-        // Przekierowanie do strony głosowania
+        // Funkcja do przekierowania na stronę głosowania
         document.getElementById('voteBtn').addEventListener('click', function () {
             window.location.href = 'vote.html';
         });
 
-        // Przekierowanie do wyników
+        // Funkcja do przekierowania na stronę wyników
         document.getElementById('resultsBtn').addEventListener('click', function () {
             window.location.href = 'results.html';
+        });
+
+        // Nasłuchiwanie na kombinację klawiszy (Ctrl + Alt + A)
+        document.addEventListener('keydown', function (event) {
+            // Sprawdzanie, czy naciśnięte zostały klawisze Ctrl + Alt + A
+            if (event.ctrlKey && event.altKey && event.key === 'a') {
+                showLoginModal(); // Pokazuje modal logowania po naciśnięciu odpowiedniej kombinacji
+            }
         });
     </script>
 </body>
