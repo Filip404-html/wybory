@@ -6,16 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Wybory USA 2024</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <!-- Strona główna -->
     <div id="home">
+        <!-- Nagłówek -->
         <header>
             <h1>Wybory Prezydenckie 2024 - USA</h1>
-            <p>Wybierz swojego kandydata!</p>
+            <p>Wybierz swojego kandydata na prezydenta USA!</p>
         </header>
 
         <!-- Przyciski -->
@@ -24,30 +23,66 @@
             <button id="results-btn" onclick="window.location.href='results.html'">Zobacz Wyniki</button>
         </div>
 
-        <!-- Dyskretny przycisk logowania -->
-        <div id="login-wrapper">
-            <button id="login-btn" onclick="showLoginForm()">Zaloguj się do Panelu Admina</button>
+        <!-- Ukryty przycisk do logowania -->
+        <div id="hidden-admin-login">
+            <button id="admin-login-btn">Zaloguj się do Panelu Admina</button>
         </div>
-</div> 
+    </div>
+
+    <!-- Modale logowania -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Panel Admina</h2>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Login" required>
+                <input type="password" id="password" placeholder="Hasło" required>
+                <button type="submit">Zaloguj</button>
+            </form>
+            <p id="login-error-message" style="color: red; display: none;">Błędne dane logowania!</p>
+        </div>
+    </div>
 
     <script>
-        // Logowanie do panelu admina
-        document.getElementById('admin-login-btn').addEventListener('click', function () {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            if (username === 'admin' && password === 'haslo123') {
-                alert('Zalogowano do panelu admina!');
-                window.location.href = 'admin-panel.html'; // Przekierowanie do panelu admina (do utworzenia)
-            } else {
-                alert('Błędne dane logowania.');
+        // Skrypt do obsługi logowania admina
+        const loginModal = document.getElementById("login-modal");
+        const adminLoginBtn = document.getElementById("admin-login-btn");
+        const closeModal = document.querySelector(".close");
+        const loginForm = document.getElementById("login-form");
+        const usernameField = document.getElementById("username");
+        const passwordField = document.getElementById("password");
+        const loginErrorMessage = document.getElementById("login-error-message");
+
+        // Ukryty przycisk do logowania, który otworzy modal
+        adminLoginBtn.addEventListener("click", function () {
+            loginModal.style.display = "block";
+        });
+
+        // Zamknięcie modala
+        closeModal.addEventListener("click", function () {
+            loginModal.style.display = "none";
+        });
+
+        // Zamknięcie modala, gdy klikniesz poza jego obszar
+        window.addEventListener("click", function (event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = "none";
             }
         });
 
-        // Pokazywanie formularza logowania po kliknięciu przycisku
-        function showLoginForm() {
-            const loginForm = document.getElementById('login-container');
-            loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
-        }
+        // Logowanie do panelu admina
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Zapobiega przeładowaniu strony
+            const username = usernameField.value;
+            const password = passwordField.value;
+
+            if (username === 'Filip' && password === 'Simps13@') {
+                alert('Zalogowano do panelu admina!');
+                window.location.href = 'admin-panel.html'; // Przekierowanie do panelu admina
+            } else {
+                loginErrorMessage.style.display = "block";
+            }
+        });
     </script>
 </body>
 
