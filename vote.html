@@ -7,19 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Wybory USA 2024</h1>
-    <p>Wybierz kandydata na prezydenta:</p>
-    
-    <div class="candidate" id="trump">
-        <h2>Donald Trump</h2>
-        <p>Donald Trump to były prezydent USA, który stawia na silną gospodarkę i bezpieczeństwo narodowe.</p>
-        <button onclick="castVote('Trump')">ODDAJ GŁOS</button>
-    </div>
-
-    <div class="candidate" id="kamala">
-        <h2>Kamala Harris</h2>
-        <p>Kamala Harris to obecna wiceprezydent USA, skupiająca się na równości, edukacji i ochronie zdrowia.</p>
-        <button onclick="castVote('Kamala')">ODDAJ GŁOS</button>
+    <h1>Wybierz swojego kandydata!</h1>
+    <div class="candidate-container">
+        <div class="candidate" onclick="castVote('Trump')">
+            <img src="trump.jpg" alt="Donald Trump">
+            <h2>Donald Trump</h2>
+            <p>Opis kandydata</p>
+            <button class="vote-button">ODDAJ GŁOS</button>
+        </div>
+        <div class="candidate" onclick="castVote('Kamala')">
+            <img src="kamala.jpg" alt="Kamala Harris">
+            <h2>Kamala Harris</h2>
+            <p>Opis kandydata</p>
+            <button class="vote-button">ODDAJ GŁOS</button>
+        </div>
     </div>
 
     <script src="scripts.js"></script>
