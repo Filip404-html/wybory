@@ -1,11 +1,10 @@
-/* Resetowanie podstawowych stylów */
+/* Globalne style */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Globalne style */
 body {
   font-family: 'Arial', sans-serif;
   background: #f4f4f4;
@@ -22,7 +21,7 @@ a {
   color: inherit;
 }
 
-/* Nagłówek strony */
+/* Nagłówek */
 header {
   background: linear-gradient(135deg, #003366, #006699);
   color: white;
@@ -62,42 +61,59 @@ button:active {
   transform: scale(1);
 }
 
-/* Przycisk ukrytego panelu admina */
-#admin-login-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+/* Sekcja głosowania */
+.vote-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px;
 }
 
-#admin-login-btn:hover {
-  opacity: 1;
-}
-
-#admin-login-btn:focus {
-  outline: none;
-}
-
-/* Sekcja główna */
-.main-container {
-  max-width: 1200px;
-  margin: 40px auto;
+.candidate-card {
+  background: #ffffff;
   padding: 20px;
-  background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 48%;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-h2 {
+.candidate-card:hover {
+  transform: scale(1.05);
+}
+
+.candidate-card img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.candidate-card h3 {
+  margin-top: 20px;
+  font-size: 1.8rem;
   color: #003366;
-  font-size: 2rem;
-  margin-bottom: 20px;
+}
+
+.candidate-card button {
+  margin-top: 20px;
+  background: #ff5733; /* Trump red */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.candidate-card button:hover {
+  background: #ff7840;
+  transform: scale(1.05);
+}
+
+.candidate-card button:active {
+  background: #c74327;
+  transform: scale(1);
 }
 
 /* Sekcja logowania */
@@ -143,139 +159,4 @@ h2 {
 
 .login-form button:hover {
   background: #0055ff;
-}
-
-/* Sekcja głosowania */
-.vote-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px 20px;
-}
-
-.candidate-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 48%;
-  text-align: center;
-  transition: transform 0.3s;
-}
-
-.candidate-card:hover {
-  transform: scale(1.05);
-}
-
-.candidate-card img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-}
-
-.candidate-card h3 {
-  margin-top: 20px;
-  font-size: 1.8rem;
-  color: #003366;
-}
-
-.candidate-card button {
-  margin-top: 20px;
-  background: #ff5733;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.candidate-card button:hover {
-  background: #ff7840;
-  transform: scale(1.05);
-}
-
-.candidate-card button:active {
-  background: #c74327;
-  transform: scale(1);
-}
-
-/* Pasek wyników */
-.results-container {
-  padding: 40px;
-  background: #f1f1f1;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.results-container h2 {
-  color: #003366;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.results-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.results-bar div {
-  height: 30px;
-  border-radius: 5px;
-  transition: width 1s ease-in-out;
-}
-
-.results-bar .trump-bar {
-  background-color: #ff4d4d;
-  width: 0;
-}
-
-.results-bar .kamala-bar {
-  background-color: #4d94ff;
-  width: 0;
-}
-
-/* Sekcja podsumowania */
-.summary {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  margin-top: 40px;
-  text-align: center;
-}
-
-.summary h3 {
-  font-size: 2rem;
-  color: #003366;
-}
-
-.summary p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-
-/* Animacja dla pasków wyników */
-@keyframes increaseWidth {
-  0% { width: 0; }
-  100% { width: 100%; }
-}
-
-/* Responsywność */
-@media (max-width: 768px) {
-  .vote-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .candidate-card {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-
-  .results-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
 }
