@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admina</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- Dodajemy bibliotekę jsPDF -->
+</head>
+<body>
+    <h1>Panel Admina</h1>
+    <button onclick="generateToken()">Generuj Token</button>
+    <button onclick="downloadResultsPDF()">Pobierz Wyniki w PDF</button>
+    
+    <h2>Wyniki Głosowania:</h2>
+    <div id="admin-results">
+        <p>Donald Trump - <span id="admin-trump-votes">0</span> głosów</p>
+        <p>Kamala Harris - <span id="admin-kamala-votes">0</span> głosów</p>
+    </div>
 
+    <script src="scripts.js"></script>
+</body>
+</html>
