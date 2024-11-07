@@ -3,70 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wybory USA</title>
+    <title>Wybory USA - Strona Główna</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Strona główna -->
     <header>
-        <h1>Wybory USA 2024</h1>
-        <p>Wybierz swojego kandydata</p>
+        <h1>Wybory Prezydenckie USA 2024</h1>
     </header>
 
-    <div class="button-container">
-        <button id="voteBtn">Oddaj głos</button>
-        <button id="resultsBtn">Zobacz wyniki</button>
-    </div>
-
-    <!-- Panel do logowania admina (ukryty na początku) -->
-    <div id="hidden-admin-login">
-        <button onclick="showLoginModal()">Logowanie do panelu admina</button>
-    </div>
-
-    <!-- Modal logowania admina -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <h2>Panel Logowania</h2>
-            <input type="password" id="adminPassword" placeholder="Wprowadź hasło">
-            <button onclick="login()">Zaloguj się</button>
-            <p id="error" style="display: none; color: red;">Błędne hasło</p>
+    <section id="main-content">
+        <div id="buttons">
+            <a href="login.html" class="button">Oddaj głos</a>
+            <a href="results.html" class="button">Zobacz wyniki</a>
         </div>
-    </div>
+        <div id="admin-login">
+            <a href="admin-login.html" class="button hidden">Panel Administratora</a>
+        </div>
+    </section>
 
-    <script>
-        // Funkcja do pokazania modala logowania admina
-        function showLoginModal() {
-            document.getElementById('loginModal').style.display = 'block';
-        }
-
-        // Funkcja logowania admina
-        function login() {
-            var password = document.getElementById('adminPassword').value;
-            // Sprawdzanie poprawności hasła
-            if (password === 'admin123') {
-                window.location.href = 'admin.html'; // Jeśli hasło jest poprawne, przekierowanie do panelu admina
-            } else {
-                document.getElementById('error').style.display = 'block'; // Jeśli hasło jest błędne, wyświetlenie komunikatu
-            }
-        }
-
-        // Funkcja do przekierowania na stronę głosowania
-        document.getElementById('voteBtn').addEventListener('click', function () {
-            window.location.href = 'vote.html';
-        });
-
-        // Funkcja do przekierowania na stronę wyników
-        document.getElementById('resultsBtn').addEventListener('click', function () {
-            window.location.href = 'results.html';
-        });
-
-        // Nasłuchiwanie na kombinację klawiszy (Ctrl + Alt + A)
-        document.addEventListener('keydown', function (event) {
-            // Sprawdzanie, czy naciśnięte zostały klawisze Ctrl + Alt + A
-            if (event.ctrlKey && event.altKey && event.key === 'a') {
-                showLoginModal(); // Pokazuje modal logowania po naciśnięciu odpowiedniej kombinacji
-            }
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
