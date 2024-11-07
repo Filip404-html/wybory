@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Wybory USA</title>
+    <title>Panel Admina</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Panel Administratora</h1>
-    </header>
-
-    <section id="admin-panel">
-        <h2>Wyniki Głosowania:</h2>
-        <div id="admin-results">
-            <div>Donald Trump: <span id="admin-trump">0</span> głosów</div>
-            <div>Kamala Harris: <span id="admin-kamala">0</span> głosów</div>
-        </div>
-
-        <h3>Tokeny:</h3>
-        <button onclick="generateToken()">Generuj Token</button>
-        <ul id="token-list">
-            <!-- Lista tokenów -->
-        </ul>
-    </section>
-
+    <div class="container">
+        <header>
+            <h1>Panel Administracyjny</h1>
+        </header>
+        <main>
+            <h2>Wyniki głosowania:</h2>
+            <div id="adminResults">
+                <p>Trump: <span id="adminTrumpVotes">0</span></p>
+                <p>Kamala: <span id="adminKamalaVotes">0</span></p>
+            </div>
+            <button onclick="location.href='index.html'">Powrót do strony głównej</button>
+        </main>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
