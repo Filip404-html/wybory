@@ -3,32 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Głosowanie</title>
+  <title>Wybór Kandydata - Wybory USA 2024</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Wybór Prezydenta USA 2024</h1>
-    <p>Oddaj swój głos</p>
+    <h1>Wybór Kandydata - Wybory USA 2024</h1>
   </header>
 
-  <div class="vote-container">
-    <!-- Trump -->
-    <div class="candidate-card" id="trump-card">
-      <img src="trump.jpg" alt="Donald Trump">
-      <h3>Donald Trump</h3>
-      <p>Były Prezydent USA. Przemawia za silną gospodarką i bezpieczeństwem narodowym.</p>
-      <button id="trump-vote-btn">Oddaj głos</button>
-    </div>
-
-    <!-- Kamala Harris -->
-    <div class="candidate-card" id="kamala-card">
-      <img src="kamala.jpg" alt="Kamala Harris">
-      <h3>Kamala Harris</h3>
-      <p>Wiceprezydent USA. Postuluje reformy społeczne i walkę z nierównościami rasowymi.</p>
-      <button id="kamala-vote-btn">Oddaj głos</button>
-    </div>
+  <div class="container">
+    <section id="candidates-section">
+      <h2>Wybierz Kandydata</h2>
+      <div class="vote-section">
+        <div class="candidate">
+          <img src="trump.jpg" alt="Donald Trump">
+          <h3>Donald Trump</h3>
+          <p>Candydat na Prezydenta</p>
+          <a href="token.html" id="vote-trump" class="vote-button">Oddaj Głos</a>
+        </div>
+        <div class="candidate">
+          <img src="kamala.jpg" alt="Kamala Harris">
+          <h3>Kamala Harris</h3>
+          <p>Candydatka na Wiceprezydenta</p>
+          <a href="token.html" id="vote-kamala" class="vote-button">Oddaj Głos</a>
+        </div>
+      </div>
+    </section>
   </div>
+
+  <footer>
+    <p>&copy; 2024 Wybory USA</p>
+  </footer>
 
   <script src="scripts.js"></script>
 </body>
