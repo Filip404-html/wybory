@@ -1,52 +1,47 @@
-// Funkcja logowania za pomocą tokenu
-function login() {
-    const token = document.getElementById("token").value;
-    if (token === "12345") { // Przykładowy token
-        window.location.href = "vote.html";
+// Funkcja logowania do panelu admina
+function adminLogin() {
+    const username = document.getElementById("admin-username").value;
+    const password = document.getElementById("admin-password").value;
+
+    // Weryfikacja admina - przykładowe dane
+    if (username === "admin" && password === "admin123") {
+        window.location.href = "admin-panel.html";
     } else {
-        alert("Błędny token!");
+        alert("Błędne dane logowania!");
     }
 }
 
-// Funkcja oddania głosu
-function castVote(candidate) {
-    let votes = JSON.parse(localStorage.getItem("votes")) || { Trump: 0, Kamala: 0 };
+// Funkcja generowania tokenu
+function generateToken() {
+    const token = Math.random().toString(36).substring(2, 15); // Generuje losowy token
+    alert("Wygenerowany token: " + token);
 
-    if (candidate === 'Trump') {
-        votes.Trump += 1;
-    } else if (candidate === 'Kamala') {
-        votes.Kamala += 1;
-    }
-
-    localStorage.setItem("votes", JSON.stringify(votes));
-
-    // Przekierowanie na stronę wyników
-    window.location.href = "results.html";
+    // Można dodać kod do zapisania tego tokenu w pliku lub bazie danych
 }
 
-// Wyświetlanie wyników głosowania
-function displayResults() {
+// Funkcja pobierania wyników w formacie PDF
+function downloadResultsPDF() {
+    const { jsPDF } = window.jspdf;
+
+    // Pobieramy dane głosów z localStorage (jeśli są dostępne)
     const votes = JSON.parse(localStorage.getItem("votes")) || { Trump: 0, Kamala: 0 };
-    const totalVotes = votes.Trump + votes.Kamala;
 
-    const trumpPercentage = (votes.Trump / totalVotes) * 100 || 0;
-    const kamalaPercentage = (votes.Kamala / totalVotes) * 100 || 0;
+    const doc = new jsPDF();
 
-    // Ustawienie szerokości paska
-    const trumpBar = document.getElementById("trump-bar");
-    const kamalaBar = document.getElementById("kamala-bar");
+    doc.text("Wyniki Głosowania", 20, 20);
+    doc.text(`Donald Trump: ${votes.Trump} głosów`, 20, 40);
+    doc.text(`Kamala Harris: ${votes.Kamala} głosów`, 20, 50);
 
-    const trumpLabel = document.getElementById("trump-label");
-    const kamalaLabel = document.getElementById("kamala-label");
-
-    trumpBar.style.width = `${trumpPercentage}%`;
-    kamalaBar.style.width = `${kamalaPercentage}%`;
-
-    trumpLabel.textContent = `Trump - ${votes.Trump} głosów`;
-    kamalaLabel.textContent = `Kamala - ${votes.Kamala} głosów`;
-
-    document.getElementById("trump-percentage").textContent = `Trump: ${trumpPercentage.toFixed(2)}%`;
-    document.getElementById("kamala-percentage").textContent = `Kamala: ${kamalaPercentage.toFixed(2)}%`;
+    doc.save("wyniki_glosowania.pdf");
 }
 
-window.onload = displayResults;
+// Funkcja do wyświetlania wyników w panelu admina
+function displayAdminResults() {
+    const votes = JSON.parse(localStorage.getItem("votes")) || { Trump: 0, Kamala: 0 };
+
+    document.getElementById("admin-trump-votes").textContent = votes.Trump;
+    document.getElementById("admin-kamala-votes").textContent = votes.Kamala;
+}
+
+// Wywołaj tę funkcję na stronie admin-panel.html, aby załadować wyniki
+window.onload = displayAdminResults;
