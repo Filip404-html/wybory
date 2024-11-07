@@ -26,5 +26,33 @@
             <p class="result-percentage" id="kamala-percentage"></p>
         </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            displayResults();
+        };
+        
+        function displayResults() {
+            const votes = JSON.parse(localStorage.getItem("votes")) || { Trump: 0, Kamala: 0 };
+            const totalVotes = votes.Trump + votes.Kamala;
+
+            const trumpPercentage = (votes.Trump / totalVotes) * 100 || 0;
+            const kamalaPercentage = (votes.Kamala / totalVotes) * 100 || 0;
+
+            const trumpBar = document.getElementById("trump-bar");
+            const kamalaBar = document.getElementById("kamala-bar");
+            const trumpLabel = document.getElementById("trump-label");
+            const kamalaLabel = document.getElementById("kamala-label");
+
+            trumpBar.style.width = `${trumpPercentage}%`;
+            kamalaBar.style.width = `${kamalaPercentage}%`;
+
+            trumpLabel.textContent = `Trump - ${votes.Trump} głosów`;
+            kamalaLabel.textContent = `Kamala - ${votes.Kamala} głosów`;
+
+            document.getElementById("trump-percentage").textContent = `Trump: ${trumpPercentage.toFixed(2)}%`;
+            document.getElementById("kamala-percentage").textContent = `Kamala: ${kamalaPercentage.toFixed(2)}%`;
+        }
+    </script>
 </body>
 </html>
