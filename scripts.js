@@ -107,3 +107,27 @@ window.onload = function () {
     }
   });
 };
+
+// Lista poprawnych tokenów (można załadować z serwera, pliku JSON itp.)
+const validTokens = ['12345', '67890']; // Przykładowe poprawne tokeny
+
+// Obsługuje formularz logowania na tokenach
+const tokenForm = document.getElementById('token-form');
+const tokenInput = document.getElementById('token-input');
+
+// Funkcja, która sprawdza poprawność tokenu
+tokenForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const token = tokenInput.value.trim();
+  
+  // Jeśli token jest poprawny, przekieruj do strony głosowania
+  if (validTokens.includes(token)) {
+    window.location.href = 'vote.html';  // Przekierowanie do strony głosowania
+  } else {
+    alert('Token jest nieprawidłowy. Spróbuj ponownie.');
+  }
+
+  // Wyczyść pole tokenu po próbie
+  tokenInput.value = '';
+});
