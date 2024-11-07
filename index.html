@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wybory USA - Strona Główna</title>
+    <title>System Głosowania w Wyborach</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Wybory Prezydenckie USA 2024</h1>
-    </header>
+    <div class="container">
+        <header>
+            <h1>System Głosowania w Wyborach 2024</h1>
+        </header>
+        <main>
+            <h2>Witamy w systemie głosowania!</h2>
+            <p>Kliknij poniżej, aby oddać głos lub zobaczyć aktualne wyniki wyborów.</p>
 
-    <section id="main-content">
-        <div id="buttons">
-            <a href="login.html" class="button">Oddaj głos</a>
-            <a href="results.html" class="button">Zobacz wyniki</a>
-        </div>
-        <div id="admin-login">
-            <a href="admin-login.html" class="button hidden">Panel Administratora</a>
-        </div>
-    </section>
-
+            <button onclick="location.href='vote.html'">Przejdź do głosowania</button>
+            <button onclick="location.href='results.html'">Zobacz wyniki</button>
+            <button onclick="window.location.href='admin-login.html'">Logowanie do panelu admina</button>
+        </main>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
