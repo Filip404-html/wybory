@@ -1,127 +1,109 @@
-// Tokeny do głosowania (możesz je przechowywać w pliku JSON, ale na potrzeby skryptu używamy tego na stałe)
-const validTokens = ['TOKEN123', 'TOKEN456', 'TOKEN789'];
-
-// Obiekty kandydatów
-const candidates = [
-  {
-    id: 'trump',
-    name: 'Donald Trump',
-    description: '45th President of the United States. Known for his controversial policies and charismatic personality.',
-    image: 'https://www.example.com/images/trump.jpg',
-    color: '#e74c3c',  // Czerwony
-    votes: 0,
-  },
-  {
-    id: 'kamala',
-    name: 'Kamala Harris',
-    description: 'Vice President of the United States and first female Vice President. Advocates for social justice and equality.',
-    image: 'https://www.example.com/images/kamala.jpg',
-    color: '#3498db',  // Niebieski
-    votes: 0,
-  },
+// Wstępna definicja tokenów (można przechowywać w pliku JSON, lokalnie w aplikacji)
+let tokens = [
+  { token: "abc123", used: false },
+  { token: "def456", used: false },
+  { token: "ghi789", used: false }
 ];
 
-// Funkcja do pokazania formy logowania
-function showLoginForm() {
-  document.getElementById('login-form').style.display = 'block';
-  document.getElementById('vote-form').style.display = 'none';
-  document.getElementById('vote-results').style.display = 'none';
+// Kto głosował i na kogo
+let votes = {
+  Trump: 0,
+  Kamala: 0
+};
+
+// Funkcja do ukrywania/wyświetlania formularza logowania
+function toggleAdminLogin() {
+  const loginForm = document.getElementById("admin-login-form");
+  loginForm.style.display = loginForm.style.display === "block" ? "none" : "block";
 }
 
-// Funkcja do sprawdzania tokenu
-function validateToken() {
-  const token = document.getElementById('token-input').value;
-  if (validTokens.includes(token)) {
-    localStorage.setItem('userToken', token); // Zapisujemy token w localStorage
-    showVotingPage();
+// Funkcja sprawdzająca poprawność tokenu
+function verifyToken() {
+  const tokenInput = document.getElementById("token-input").value;
+  const token = tokens.find(t => t.token === tokenInput && !t.used);
+
+  if (token) {
+    // Jeśli token poprawny i nieużywany
+    token.used = true;
+    alert("Token zweryfikowany. Możesz oddać głos!");
+    window.location.href = "vote.html";  // Przekierowanie do strony głosowania
   } else {
-    alert('Niepoprawny token! Spróbuj ponownie.');
+    alert("Niepoprawny token lub już użyty!");
   }
 }
 
-// Funkcja do pokazania strony głosowania
-function showVotingPage() {
-  document.getElementById('login-form').style.display = 'none';
-  document.getElementById('vote-form').style.display = 'block';
-  document.getElementById('vote-results').style.display = 'none';
-
-  const voteContainer = document.getElementById('vote-container');
-  voteContainer.innerHTML = '';  // Czyścimy poprzednią listę kandydatów
-
-  candidates.forEach(candidate => {
-    const candidateCard = document.createElement('div');
-    candidateCard.classList.add('vote-candidate');
-    candidateCard.style.borderColor = candidate.color;
-
-    candidateCard.innerHTML = `
-      <img src="${candidate.image}" alt="${candidate.name}" />
-      <h3>${candidate.name}</h3>
-      <p>${candidate.description}</p>
-      <button onclick="vote('${candidate.id}')">Oddaj Głos!</button>
-    `;
-    voteContainer.appendChild(candidateCard);
-  });
-}
-
-// Funkcja do głosowania
-function vote(candidateId) {
-  const candidate = candidates.find(c => c.id === candidateId);
-  if (candidate) {
-    candidate.votes += 1;  // Zwiększamy liczbę głosów dla wybranego kandydata
-    showResults();  // Po głosowaniu pokazujemy wyniki
+// Funkcja głosowania
+function voteForCandidate(candidate) {
+  if (candidate === "Trump") {
+    votes.Trump++;
+    updateVoteResults();
+  } else if (candidate === "Kamala") {
+    votes.Kamala++;
+    updateVoteResults();
   }
 }
 
-// Funkcja do pokazania wyników
+// Funkcja aktualizująca wyniki głosowania
+function updateVoteResults() {
+  const totalVotes = votes.Trump + votes.Kamala;
+  const trumpPercent = (votes.Trump / totalVotes) * 100 || 0;
+  const kamalaPercent = (votes.Kamala / totalVotes) * 100 || 0;
+
+  // Zaktualizowanie pasków postępu
+  document.getElementById("trump-progress").style.width = `${trumpPercent}%`;
+  document.getElementById("kamala-progress").style.width = `${kamalaPercent}%`;
+
+  // Zaktualizowanie tekstów na paskach
+  document.getElementById("trump-progress-text").innerText = `${Math.round(trumpPercent)}%`;
+  document.getElementById("kamala-progress-text").innerText = `${Math.round(kamalaPercent)}%`;
+
+  // Wyświetlenie końcowych wyników w procentach
+  document.getElementById("trump-votes").innerText = `Trump: ${votes.Trump} głosów`;
+  document.getElementById("kamala-votes").innerText = `Kamala: ${votes.Kamala} głosów`;
+}
+
+// Funkcja pokazująca wyniki głosowania
 function showResults() {
-  document.getElementById('vote-form').style.display = 'none';
-  document.getElementById('vote-results').style.display = 'block';
-
-  const totalVotes = candidates.reduce((total, candidate) => total + candidate.votes, 0);
-
-  const resultsContainer = document.getElementById('results-container');
-  resultsContainer.innerHTML = '';  // Czyścimy poprzednie wyniki
-
-  candidates.forEach(candidate => {
-    const percentage = totalVotes > 0 ? (candidate.votes / totalVotes) * 100 : 0;
-    const resultBar = document.createElement('div');
-    resultBar.classList.add('result-bar');
-    resultBar.style.backgroundColor = candidate.color;
-    resultBar.style.width = `${percentage}%`;
-
-    const resultText = document.createElement('div');
-    resultText.classList.add('result-text');
-    resultText.innerHTML = `
-      <strong>${candidate.name}</strong>: ${candidate.votes} głosów (${percentage.toFixed(2)}%)
-    `;
-
-    const resultWrapper = document.createElement('div');
-    resultWrapper.classList.add('result-wrapper');
-    resultWrapper.appendChild(resultBar);
-    resultWrapper.appendChild(resultText);
-
-    resultsContainer.appendChild(resultWrapper);
-  });
+  document.getElementById("results-container").style.display = "block";
 }
 
-// Funkcja ukrywająca wszystkie sekcje
-function hideAllSections() {
-  document.getElementById('login-form').style.display = 'none';
-  document.getElementById('vote-form').style.display = 'none';
-  document.getElementById('vote-results').style.display = 'none';
+// Funkcja do generowania tokenów dla admina
+function generateTokens() {
+  let newToken = generateRandomToken();
+  tokens.push({ token: newToken, used: false });
+  alert(`Nowy token: ${newToken}`);
 }
 
-// Funkcja do wylogowania
-function logout() {
-  localStorage.removeItem('userToken');  // Usuwamy zapisany token
-  showLoginForm();
+// Funkcja do generowania losowego tokenu
+function generateRandomToken() {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let token = "";
+  for (let i = 0; i < 6; i++) {
+    token += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return token;
 }
 
-// Sprawdzamy, czy użytkownik jest już zalogowany
-window.onload = function() {
-  if (localStorage.getItem('userToken')) {
-    showVotingPage();
+// Funkcja logowania admina (opcjonalnie ukryta)
+function adminLogin() {
+  const adminPassword = prompt("Wpisz hasło do panelu admina:");
+  if (adminPassword === "admin123") {
+    window.location.href = "admin-panel.html";  // Przekierowanie do panelu admina
   } else {
-    showLoginForm();
+    alert("Niepoprawne hasło!");
   }
 }
+
+// Funkcja uruchamiająca wszystkie eventy po załadowaniu strony
+window.onload = function () {
+  // Funkcja uruchamiająca przycisk "Pokaż wyniki"
+  const resultsBtn = document.getElementById("results-btn");
+  resultsBtn.addEventListener("click", showResults);
+
+  // Przycisk logowania admina (po kombinacji przycisków)
+  document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey && event.altKey && event.key === "L") {
+      adminLogin();
+    }
+  });
+};
