@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logowanie - Panel Admina</title>
+    <title>Admin Login - Wybory USA</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Logowanie do Panelu Admina</h1>
-        <input type="text" id="admin-username" placeholder="Nazwa użytkownika">
-        <input type="password" id="admin-password" placeholder="Hasło">
-        <button onclick="adminLogin()">Zaloguj się</button>
-    </div>
+    <header>
+        <h1>Panel Admina</h1>
+    </header>
+
+    <section id="admin-login-section">
+        <h2>Wpisz hasło admina:</h2>
+        <input type="password" id="admin-password" placeholder="Wprowadź hasło">
+        <button onclick="loginAdmin()">Zaloguj</button>
+        <p id="admin-error-message" class="hidden">Niepoprawne hasło!</p>
+    </section>
 
     <script src="scripts.js"></script>
 </body>
