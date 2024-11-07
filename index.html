@@ -1,89 +1,62 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Wybory Prezydenckie 2024</title>
+    <title>Wybory USA</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div id="home">
-        <!-- Nagłówek -->
-        <header>
-            <h1>Wybory Prezydenckie 2024 - USA</h1>
-            <p>Wybierz swojego kandydata na prezydenta USA!</p>
-        </header>
+    <!-- Strona główna -->
+    <header>
+        <h1>Wybory USA 2024</h1>
+        <p>Wybierz swojego kandydata</p>
+    </header>
 
-        <!-- Przyciski do głosowania i wyników -->
-        <div class="button-container">
-            <button id="vote-btn" onclick="window.location.href='vote.html'">Oddaj Głos</button>
-            <button id="results-btn" onclick="window.location.href='results.html'">Zobacz Wyniki</button>
-        </div>
-
-        <!-- Ukryty przycisk do logowania admina -->
-        <div id="hidden-admin-login">
-            <button id="admin-login-btn">Zaloguj się do Panelu Admina</button>
-        </div>
+    <div class="button-container">
+        <button id="voteBtn">Oddaj głos</button>
+        <button id="resultsBtn">Zobacz wyniki</button>
     </div>
 
-    <!-- Modal logowania -->
-    <div id="login-modal" class="modal">
+    <!-- Modale: Logowanie admina -->
+    <div id="hidden-admin-login">
+        <button onclick="showLoginModal()">Admin</button>
+    </div>
+
+    <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Panel Admina</h2>
-            <form id="login-form">
-                <input type="text" id="username" placeholder="Login" required>
-                <input type="password" id="password" placeholder="Hasło" required>
-                <button type="submit">Zaloguj</button>
-            </form>
-            <p id="login-error-message" style="color: red; display: none;">Błędne dane logowania!</p>
+            <h2>Panel Logowania</h2>
+            <input type="password" id="adminPassword" placeholder="Wprowadź hasło">
+            <button onclick="login()">Zaloguj się</button>
+            <p id="error" style="display: none;">Błędne hasło</p>
         </div>
     </div>
 
     <script>
-        // Skrypt do obsługi logowania admina
-        const loginModal = document.getElementById("login-modal");
-        const adminLoginBtn = document.getElementById("admin-login-btn");
-        const closeModal = document.querySelector(".close");
-        const loginForm = document.getElementById("login-form");
-        const usernameField = document.getElementById("username");
-        const passwordField = document.getElementById("password");
-        const loginErrorMessage = document.getElementById("login-error-message");
+        // Funkcja do pokazania logowania admina
+        function showLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
 
-        // Ukryty przycisk do logowania, który otworzy modal
-        adminLoginBtn.addEventListener("click", function () {
-            loginModal.style.display = "block";
-        });
-
-        // Zamknięcie modala
-        closeModal.addEventListener("click", function () {
-            loginModal.style.display = "none";
-        });
-
-        // Zamknięcie modala, gdy klikniesz poza jego obszar
-        window.addEventListener("click", function (event) {
-            if (event.target === loginModal) {
-                loginModal.style.display = "none";
-            }
-        });
-
-        // Logowanie do panelu admina
-        loginForm.addEventListener("submit", function (event) {
-            event.preventDefault(); // Zapobiega przeładowaniu strony
-            const username = usernameField.value;
-            const password = passwordField.value;
-
-            if (username === 'admin' && password === 'haslo123') {
-                alert('Zalogowano do panelu admina!');
-                window.location.href = 'admin-panel.html'; // Przekierowanie do panelu admina
+        // Funkcja logowania admina
+        function login() {
+            var password = document.getElementById('adminPassword').value;
+            if (password === 'admin123') {
+                window.location.href = 'admin.html'; // Przekierowanie do panelu admina
             } else {
-                loginErrorMessage.style.display = "block";
+                document.getElementById('error').style.display = 'block';
             }
+        }
+
+        // Przekierowanie do strony głosowania
+        document.getElementById('voteBtn').addEventListener('click', function () {
+            window.location.href = 'vote.html';
+        });
+
+        // Przekierowanie do wyników
+        document.getElementById('resultsBtn').addEventListener('click', function () {
+            window.location.href = 'results.html';
         });
     </script>
 </body>
-
 </html>
