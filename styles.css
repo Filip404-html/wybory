@@ -1,4 +1,4 @@
-/* Resetowanie podstawowych ustawień */
+* /* Resetowanie podstawowych ustawień */
 * {
     margin: 0;
     padding: 0;
@@ -67,11 +67,18 @@ button:hover {
     transform: translateY(-4px);
 }
 
-/* Przycisk do logowania admina - ukryty */
+/* Ukryty przycisk do logowania admina */
 #hidden-admin-login {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+#hidden-admin-login:hover {
+    opacity: 1;
 }
 
 #hidden-admin-login button {
@@ -152,49 +159,4 @@ button:hover {
 .modal-content p {
     color: red;
     display: none;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Animacja dla modala */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-/* Reakcja na rozmiary ekranów (responsywność) */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    header p {
-        font-size: 1.2rem;
-    }
-
-    .button-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    button {
-        width: 80%;
-    }
-
-    .modal-content {
-        width: 80%;
-    }
-}
+    text-align:
